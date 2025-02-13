@@ -2,14 +2,16 @@
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
-  border: solid 1px red;
+  /* border: solid 1px red; */
+  font-size: 16px;
+  font-family: inter, "sans-serif";
 }
-
 .body {
   width: 100%;
   height: 192px;
-  border: solid 1px red;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #pesquisar {
@@ -26,34 +28,52 @@
 }
 
 .container {
-  width: 993px;
+  width: 1440px;
   height: 129px;
-  border: solid red 1px;
-  margin-left: 100px;
-  margin-top: 34px;
-  padding-bottom: 40px;
+  margin-top: 14px;
   display: flex;
-  align-items: center; /*Caso de problema remova esse*/
+  align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
 }
-.container nav {
-  align-content: flex-end;
-  margin-right: 100%;
+nav {
+  margin-left: 35px;
 }
-nav,
-ul,
-li {
+ul {
   display: flex;
   list-style-type: none;
-  width: 423px;
-  height: 29px;
-  justify-content: center;
-  align-items: center;
+  text-decoration: underline;
 }
+li {
+  padding-right: 40px;
+}
+
 .Cadastro {
   font-size: large;
   height: 28px;
   color: #474747;
+}
+.img-cart {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("/src/assets/mini-cart.svg");
+  width: 30px;
+  height: 30px;
+}
+.Entrar {
+  font-size: 14px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 114px;
+  height: 40px;
+  background: #c92071;
+  color: #ffffff;
+  text-decoration: none;
+}
+.Entrar:hover {
+  transition: 0.5s;
+  background: #991956;
 }

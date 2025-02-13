@@ -1,18 +1,12 @@
 import react from "react";
 import "./App.css";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+import Layout from "./pages/Layout";
 
 function App() {
   return (
-    <>
-      <div>
-        <Header />
-        <h1>Hello World!!</h1>
-        <p>123456</p>
-        <Footer />
-      </div>
-    </>
+    <div>
+      <Layout />
+    </div>
   );
 }
 

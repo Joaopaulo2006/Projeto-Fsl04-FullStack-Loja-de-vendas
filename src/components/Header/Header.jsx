@@ -1,6 +1,7 @@
 import React from "react";
 import Logo from "../Logo/Logo.jsx";
 import "./Header.css";
+
 function Header() {
   return (
     <div className="body">
@@ -15,7 +16,10 @@ function Header() {
         <a href="" className="Cadastro">
           Cadastre-se
         </a>
-
+        <a href="#" className="Entrar">
+          <strong>Entrar</strong>
+        </a>
+        <div className="img-cart"></div>
         <nav>
           <ul>
             <li>Home</li>
@@ -25,9 +29,6 @@ function Header() {
           </ul>
         </nav>
       </div>
-      <a href="" className="Entrar">
-        Entrar
-      </a>
     </div>
   );
 }
