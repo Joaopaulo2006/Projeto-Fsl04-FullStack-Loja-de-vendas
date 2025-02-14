@@ -1,13 +1,14 @@
-import React, { Children } from "react";
+import React, { children } from "react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const Layout = ({ Children }) => {
+const Layout = ({ children }) => {
   return (
     <div>
       <Header />
 
-      {Children}
+      {children}
 
       <Footer />
     </div>

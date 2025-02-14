@@ -1,5 +1,5 @@
 * {
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
   /* border: solid 1px red; */
@@ -10,7 +10,6 @@
   width: 100%;
   height: 192px;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -24,44 +23,57 @@
 }
 #pesquisar:focus {
   outline: none;
-  border: none;
 }
 
 .container {
-  width: 1440px;
+  width: 100%;
   height: 129px;
   margin-top: 14px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
 }
-nav {
-  margin-left: 35px;
+.navigation {
+  margin-top: 30px;
+  height: 30px;
 }
-ul {
+.navigation ul {
   display: flex;
-  list-style-type: none;
-  text-decoration: underline;
+  list-style: none;
+  padding-left: 0;
 }
-li {
-  padding-right: 40px;
+ul a {
+  display: flex;
+  margin-right: 20px;
+  text-decoration: none;
+  color: #474747;
 }
-
-.Cadastro {
+.cadastro {
   font-size: large;
   height: 28px;
   color: #474747;
 }
-.img-cart {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-image: url("/src/assets/mini-cart.svg");
-  width: 30px;
-  height: 30px;
+.img-cart,
+.img-cart img {
+  width: 35px;
+  height: 35px;
 }
-.Entrar {
+.img-cart {
+  margin-left: 50px;
+}
+.user-actions {
+  width: 400px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.img-cart:hover {
+  cursor: pointer;
+}
+.entrar {
+  margin-left: 50px;
   font-size: 14px;
   border-radius: 4px;
   display: flex;
@@ -73,7 +85,17 @@ li {
   color: #ffffff;
   text-decoration: none;
 }
-.Entrar:hover {
+.entrar:hover {
   transition: 0.5s;
   background: #991956;
+}
+.navigation a.active {
+  color: #c92071;
+  font-weight: bold;
+  position: relative;
+}
+
+.navigation a.active::after {
+  content: "";
+  background-color: #c92071;
 }
