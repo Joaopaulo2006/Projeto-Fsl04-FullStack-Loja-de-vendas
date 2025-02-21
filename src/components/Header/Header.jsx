@@ -2,12 +2,14 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../Logo/Logo.jsx";
 import "./Header.css";
+import cartIcon from "../../assets/mini-cart.svg";
 
 function Header() {
   return (
     <div className="body">
       <div className="container">
         <Logo isHeader />
+
         <div className="search-box">
           <input
             type="text"
@@ -16,30 +18,52 @@ function Header() {
             placeholder="Pesquisar produto..."
           />
         </div>
+
         <div className="user-actions">
-          <a href="/cadastro" className="cadastro">
+          <NavLink to="/cadastro" className="cadastro">
             Cadastre-se
-          </a>
-          <a href="/login" className="entrar">
+          </NavLink>
+          <NavLink to="/login" className="entrar">
             <strong>Entrar</strong>
-          </a>
+          </NavLink>
           <div className="img-cart">
-            <img src="/src/assets/mini-cart.svg" alt="Carrinho de compras" />
+            <img src={cartIcon} alt="Carrinho de compras" />
           </div>
         </div>
+
         <nav className="navigation">
           <ul>
             <li>
-              <a href="/">Home</a>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <a href="/produtos">Produtos</a>
+              <NavLink
+                to="/products"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Produtos
+              </NavLink>
             </li>
             <li>
-              <a href="/categorias">Categorias</a>
+              <NavLink
+                to="/categories"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Categorias
+              </NavLink>
             </li>
             <li>
-              <a href="/meus-pedidos">Meus Pedidos</a>
+              <NavLink
+                to="/orders"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Meus Pedidos
+              </NavLink>
             </li>
           </ul>
         </nav>
