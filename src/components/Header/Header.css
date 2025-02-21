@@ -91,8 +91,7 @@ ul a {
 }
 .navigation a.active {
   color: #c92071;
-  font-weight: bold;
-  position: relative;
+  text-decoration: underline;
 }
 
 .navigation a.active::after {
