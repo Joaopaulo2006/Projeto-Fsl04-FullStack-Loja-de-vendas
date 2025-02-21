@@ -4,7 +4,7 @@ import Gallery from "../../components/Gallery/Gallery.jsx";
 import ProductOptions from "../../components/ProductOptions/ProductOptions.jsx";
 import BuyBox from "../../components/BuyBox/BuyBox.jsx";
 import Section from "../../components/Section/section";
-import ProductListing from "../../components/ProductListing/productListing";
+import ProductListing from "../../components/ProductListing/ProductListing";
 function ProductViewPage() {
   const { id } = useParams(); // Obtém o id do produto da URL
   const [product, setProduct] = useState(null);

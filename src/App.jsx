@@ -1,27 +1,22 @@
-// src/App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout/Layout"; // Importa o Layout
-import ProductListingPage from "./pages/ProductListingPage/ProductListingPage"; // Exemplo de uma página
-import ProductViewPage from "./pages/ProductViewPage/ProductViewPage"; // Exemplo de outra página
-import HomePage from "./pages/HomePage/HomePage"; // Página inicial
+import Layout from "./components/Layout/Layout";
+import HomePage from "./pages/HomePage/HomePage";
+import ProductListingPage from "./pages/ProductListingPage/ProductListingPage";
+import ProductViewPage from "./pages/ProductViewPage/ProductViewPage";
 
-function App() {
+const App = () => {
   return (
     <Router>
-      <Routes>
-        {/* Todas as rotas abaixo serão renderizadas dentro do Layout */}
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />} /> {/* Página inicial */}
-          <Route path="produtos" element={<ProductListingPage />} />{" "}
-          {/* Listagem de produtos */}
-          <Route path="product/:id" element={<ProductViewPage />} />{" "}
-          {/* Visualização de produto */}
-          {/* Adicione outras rotas aqui */}
-        </Route>
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<ProductListingPage />} />
+          <Route path="/product/:id" element={<ProductViewPage />} />
+        </Routes>
+      </Layout>
     </Router>
   );
-}
+};
 
 export default App;

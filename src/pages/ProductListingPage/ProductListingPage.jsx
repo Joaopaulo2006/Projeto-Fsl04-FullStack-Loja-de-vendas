@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../../components/Layout/Layout"; // Componente Layout
 import Section from "../../components/Section/section"; // Componente Section
-import ProductListing from "../../components/ProductListing/productListing.jsx"; // Componente de listagem de produtos
+import ProductListing from "../../components/ProductListing/ProductListing.jsx"; // Componente de listagem de produtos
 import FilterGroup from "../../components/FilterGroup/FilterGroup.jsx"; // Componente de filtro
 import "./ProductListingPage.css"; // Estilos específicos para a página
 
@@ -17,18 +17,18 @@ function ProductListingPage() {
       const productsData = [
         {
           name: "Produto 1",
-          image: "/path/to/product-image-1.png",
+          image: "../../../public/product-image-1.png",
           price: 200,
           priceDiscount: 149.9,
         },
         {
           name: "Produto 2",
-          image: "/path/to/product-image-2.png",
+          image: "../../../public/product-image-2.png",
           price: 49.9,
         },
         {
           name: "Produto 3",
-          image: "/path/to/product-image-3.png",
+          image: "../../../public/product-image-3.png",
           price: 120,
         },
       ];

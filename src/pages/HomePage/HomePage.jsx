@@ -1,46 +1,50 @@
 import React from "react";
+import Gallery from "../../components/Gallery/Gallery";
 import Section from "../../components/Section/section"; // Componente de seção
-import ProductListing from "../ProductListingPage/ProductListingPage"; // Componente de listagem de produtos
-
+import ProductListing from "../../components/ProductListing/ProductListing"; // Componente correto
+import "./HomePage.css";
 function HomePage() {
   const featuredProducts = [
     {
       name: "Produto 1",
-      image: "/path/to/product-image-1.png",
+      image: "/product-image-2.jpeg", // Caminho correto da imagem
       price: 150,
       priceDiscount: 99.9,
     },
     {
       name: "Produto 2",
-      image: "/path/to/product-image-2.png",
+      image: "/product-image-2.png",
       price: 120,
     },
     {
       name: "Produto 3",
-      image: "/path/to/product-image-3.png",
+      image: "/product-image-3.png",
       price: 200,
       priceDiscount: 150,
     },
-    // Mais produtos podem ser adicionados
   ];
-
+  const images = [
+    { src: "/home-slide-1.jpeg" },
+    { src: "/home-slide-2.jpeg" },
+    { src: "/home-slide-3.jpeg" },
+  ];
   return (
     <div className="home-page">
-      {/* Seção de Produtos em Destaque */}
-      <Section title="Produtos em Destaque" titleAlign="left">
-        {/* A listagem de produtos é passada como filho da Section */}
+      <Gallery
+        images={images}
+        width="1440px"
+        height="681px"
+        autoSlide={true}
+        interval={4000}
+      />
+      <Section title="Produtos em Destaque" titleAlign="center">
         <ProductListing products={featuredProducts} />
       </Section>
-
-      {/* Outra Seção */}
       <Section title="Promoções Especiais" titleAlign="center">
-        {/* Aqui você pode adicionar mais componentes ou conteúdos relacionados a promoções */}
         <div className="promotions">
           <p>Descontos incríveis em diversos produtos!</p>
         </div>
       </Section>
-
-      {/* Você pode adicionar mais seções conforme necessário */}
     </div>
   );
 }
