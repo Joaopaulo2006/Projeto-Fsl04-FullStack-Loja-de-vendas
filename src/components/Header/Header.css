@@ -2,15 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* border: solid 1px red; */
   font-size: 16px;
   font-family: inter, "sans-serif";
 }
 .body {
-  width: 100%;
+  justify-content: center;
+  align-items: center;
   height: 192px;
   display: flex;
-  align-items: center;
 }
 
 #pesquisar {
@@ -26,9 +25,8 @@
 }
 
 .container {
-  width: 100%;
+  min-width: 1440px;
   height: 129px;
-  margin-top: 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -59,9 +57,7 @@ ul a {
   width: 35px;
   height: 35px;
 }
-.img-cart {
-  margin-left: 50px;
-}
+
 .user-actions {
   width: 400px;
   align-items: center;
@@ -73,7 +69,6 @@ ul a {
   cursor: pointer;
 }
 .entrar {
-  margin-left: 50px;
   font-size: 14px;
   border-radius: 4px;
   display: flex;

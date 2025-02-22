@@ -1,0 +1,27 @@
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-title {
+  font-size: 16px;
+  color: #4f4f4f;
+  margin-bottom: 10px;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-option {
+  margin-bottom: 8px;
+}
+
+.filter-option input {
+  margin-right: 8px;
+}
+
+.filter-option label {
+  font-size: 14px;
+  color: #4f4f4f;
+}

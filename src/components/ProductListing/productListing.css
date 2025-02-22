@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.product-listing {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100px;
+}
+.collection-list {
+  border-radius: 100%;
+  width: 100px;
+}

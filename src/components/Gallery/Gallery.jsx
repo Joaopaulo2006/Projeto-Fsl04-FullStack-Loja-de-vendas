@@ -1,29 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./Gallery.css";
 
-function Gallery({
-  images,
-  width = "1440px",
-  height = "681px",
-  radius = "10px",
-  autoSlide = true,
-  interval = 3000,
-}) {
+function Gallery({ images, autoSlide = true, interval = 3000 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Função para avançar para a próxima imagem
+  // Avança para o próximo slide
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
-  // Função para voltar para a imagem anterior
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
+  // Retrocede para o slide anterior
 
-  // Efeito para troca automática de imagens (caso autoSlide seja true)
+  // Troca automática de slides
   useEffect(() => {
     if (!autoSlide) return;
 
@@ -32,36 +20,31 @@ function Gallery({
   }, [currentIndex, autoSlide, interval]);
 
   return (
-    <div className="gallery-container" style={{ width, height }}>
-      {/* Botão para imagem anterior */}
-      <button className="prev" onClick={prevSlide}>
-        &#10094;
-      </button>
-
-      {/* Imagem principal */}
-      <img
-        src={images[currentIndex].src}
-        alt={`Slide ${currentIndex + 1}`}
-        className="main-image"
-        style={{ borderRadius: radius, width, height }}
-      />
-
-      {/* Botão para próxima imagem */}
-      <button className="next" onClick={nextSlide}>
-        &#10095;
-      </button>
-
-      {/* Miniaturas (opcional) */}
-      <div className="thumbnails">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`thumbnail ${index === currentIndex ? "active" : ""}`}
-            onClick={() => setCurrentIndex(index)}
-            style={{ backgroundImage: `url(${image.src})` }}
-          ></div>
-        ))}
+    <div className="gallery-container">
+      <div
+        className="slide"
+        style={{ backgroundImage: `url(${images[currentIndex].src})` }}
+      >
+        <div className="slide-content">
+          <span className="highlight">Melhores ofertas personalizadas</span>
+          <h1>Queima de estoque Nike 🔥</h1>
+          <p>
+            Consequat culpa exercitation mollit nisi excepteur do do tempor
+            laboris eiusmod irure consectetur.
+          </p>
+          <button className="cta-button">Ver Ofertas</button>
+        </div>
+        <div className="indicators">
+          {images.map((_, index) => (
+            <span
+              key={index}
+              className={index === currentIndex ? "dot active" : "dot"}
+              onClick={() => setCurrentIndex(index)}
+            ></span>
+          ))}
+        </div>
       </div>
+      {/* Indicadores de slide */}
     </div>
   );
 }

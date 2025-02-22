@@ -273,7 +273,7 @@ Opcionalmente esse componente renderizará _thumbnails_, que são miniaturas das
   - `className` pode ser usado para passar nome de classes CSS para o elemento que estiver como pai de todos os outros elementos da galeria
   - `width` pode receber um valor em pixel para definir a largura que o slide de imagens deve ser renderizado. Exemplo: `<Gallery width="1440">`
   - `height` pode receber um valor em pixel para definir a altura que o slide de imagens deve ser renderizado. Exemplo: `<Gallery height="681">`
-  - `radius` deve receber uma strig indicando o valor em pixel do arredondamento das bordas da imagem. Exemplo: `<Gallery radius="4px">`
+  - `radius` deve receber uma string indicando o valor em pixel do arredondamento das bordas da imagem. Exemplo: `<Gallery radius="4px">`
   - `showThumbs` não recebe valor nenhum, quando essa propriedade existir, o componente deve exibir as imagens em miniaturas (com 117px de largura por 95px de altura) na parte inferior do slide de imagens.
     Caso a propriedade `showthumbs` não estiver presente, nenhuma miniatura das imagens deve ser exibida.
     O valor do atributo `radius` deve ser aplicado para arredondar as bordas das imagens em miniaturas.

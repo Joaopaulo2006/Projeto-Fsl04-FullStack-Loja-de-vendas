@@ -1,10 +1,57 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Container do card com posicionamento relativo para o overlay funcionar */
+.home-page .collections-list .product-card {
+  position: relative;
+  width: 405px;
+  height: 251px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
 }
-.home-page {
-  border: solid 1px red;
-  width: auto;
-  height: 1000px;
+
+/* A imagem ocupa todo o card */
+.home-page .collections-list .product-card .product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Container de informações do produto, configurado para sobrepor a imagem */
+.home-page .collections-list .product-card .product-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Centraliza o conteúdo (o botão) */
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  /* Impede que outros elementos (nome, preço) interfiram */
+  pointer-events: none;
+}
+
+/* Oculta todos os elementos dentro de product-info, exceto o botão/link */
+.home-page .collections-list .product-card .product-info > *:not(.button-link) {
+  display: none;
+}
+
+/* Estilização do botão/link */
+.home-page .collections-list .product-card .button-link {
+  margin: 10px;
+  width: 153px;
+  height: 48px;
+  pointer-events: all; /* Permite interação com o botão */
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+  color: #c92071;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  transition: 1s ease;
+}
+
+.home-page .collections-list .product-card .button-link:hover {
+  background-color: #0056b3;
+  color: #f5f5f5;
 }

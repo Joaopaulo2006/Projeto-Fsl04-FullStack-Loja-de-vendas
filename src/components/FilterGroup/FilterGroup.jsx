@@ -1,4 +1,5 @@
 import React from "react";
+import "./FilterGroup.css";
 
 function FilterGroup({ title, inputType, options, onChange }) {
   return (

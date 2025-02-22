@@ -1,45 +1,60 @@
 import React from "react";
 import Gallery from "../../components/Gallery/Gallery";
-import Section from "../../components/Section/section"; // Componente de seção
-import ProductListing from "../../components/ProductListing/ProductListing"; // Componente correto
+import Section from "../../components/Section/section";
+import ProductListing from "../../components/ProductListing/ProductListing";
 import "./HomePage.css";
+
 function HomePage() {
   const featuredProducts = [
     {
-      name: "Produto 1",
-      image: "/product-image-2.jpeg", // Caminho correto da imagem
-      price: 150,
-      priceDiscount: 99.9,
+      id: "1",
+      image: "/collection-1.png",
+      PriceDiscount: "30% OFF",
     },
     {
-      name: "Produto 2",
-      image: "/product-image-2.png",
-      price: 120,
+      id: "2",
+      image: "/collection-2.png",
     },
     {
-      name: "Produto 3",
-      image: "/product-image-3.png",
-      price: 200,
-      priceDiscount: 150,
+      id: "3",
+      image: "/collection-3.png",
     },
   ];
+
   const images = [
     { src: "/home-slide-1.jpeg" },
     { src: "/home-slide-2.jpeg" },
     { src: "/home-slide-3.jpeg" },
+    { src: "/home-slide-4.jpeg" },
+    { src: "/home-slide-5.jpeg" },
+    { src: "/home-slide-6.jpeg" },
+    { src: "/home-slide-7.jpeg" },
+    { src: "/home-slide-8.jpeg" },
   ];
+
   return (
     <div className="home-page">
       <Gallery
         images={images}
         width="1440px"
         height="681px"
+        justify-content="center"
+        align-items="center"
         autoSlide={true}
         interval={4000}
       />
-      <Section title="Produtos em Destaque" titleAlign="center">
-        <ProductListing products={featuredProducts} />
+      <Section
+        title="Coleções em Destaque"
+        titleAlign="left"
+        className="collections"
+      >
+        <ProductListing
+          products={featuredProducts}
+          useButtonLink={true}
+          variant="collections-list"
+        />
       </Section>
+
       <Section title="Promoções Especiais" titleAlign="center">
         <div className="promotions">
           <p>Descontos incríveis em diversos produtos!</p>
