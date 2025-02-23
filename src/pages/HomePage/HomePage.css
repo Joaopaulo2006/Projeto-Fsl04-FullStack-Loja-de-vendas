@@ -1,3 +1,6 @@
+.home-page {
+  background: #f9f8fe;
+}
 /* Container do card com posicionamento relativo para o overlay funcionar */
 .home-page .collections-list .product-card {
   position: relative;
@@ -54,4 +57,48 @@
 .home-page .collections-list .product-card .button-link:hover {
   background-color: #0056b3;
   color: #f5f5f5;
+}
+.promotions {
+  /* border: 1px solid red; */
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.promotions span {
+  margin-top: 10px;
+}
+.category-icon {
+  /* border: 1px solid red; */
+  width: 104px;
+  height: 138px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.bcg {
+  width: 104px;
+  height: 104px;
+  background-color: #ffffff;
+  border-radius: 100%;
+}
+.img-category {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 104px;
+  height: 104px;
+  display: flex;
+  border-radius: 100%;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: 1s ease;
+}
+.img-category:hover {
+  transition: 1s ease;
+  transform: scale(1.1);
+  opacity: 1;
 }

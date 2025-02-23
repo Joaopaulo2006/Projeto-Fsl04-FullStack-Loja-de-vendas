@@ -2,7 +2,12 @@ import React from "react";
 import ProductCard from "../ProductCard/productcard.jsx";
 import "./productListing.css";
 
-function ProductListing({ products, useButtonLink = false, variant = "" }) {
+function ProductListing({
+  products,
+  useButtonLink = false,
+  variant = "",
+  type,
+}) {
   return (
     <div className={`product-listing ${variant}`}>
       {products.length === 0 ? (
@@ -11,8 +16,9 @@ function ProductListing({ products, useButtonLink = false, variant = "" }) {
         <div className="product-list">
           {products.map((product, index) => (
             <ProductCard
-              key={product.id || index} // Evita erro caso id seja undefined
-              id={product.id || `product-${index}`} // Garante que sempre tenha um id
+              key={index} // Evita erro caso id seja undefined
+              id={`product-${index + 1}`} // Garante que sempre tenha um id
+              type={type || "Produto nao listado"}
               name={product.name || "Produto Sem Nome"}
               image={product.image}
               price={product.price || 0}

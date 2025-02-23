@@ -1,5 +1,6 @@
 .product-card {
-  width: 300px;
+  width: 292px;
+  height: 439px;
   border: 1px solid #ddd;
   border-radius: 8px;
   overflow: hidden;
@@ -10,21 +11,22 @@
 .product-card:hover {
   transform: scale(1.05); /* Aumenta o tamanho do card ao passar o mouse */
 }
+.product-type {
+  color: #0056b3;
+}
 
 .product-image {
   width: 292px;
   height: 321px;
-  object-fit: cover;
 }
 
 .product-info {
   padding: 15px;
 }
 
-.product-name {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+.product-name p {
+  font-size: 1px;
+  color: #ff0;
   margin-bottom: 10px;
 }
 
