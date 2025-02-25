@@ -26,15 +26,12 @@
 
 .container {
   min-width: 1440px;
-  height: 129px;
+  height: 192px;
+  margin-top: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-}
-.navigation {
-  margin-top: 30px;
-  height: 30px;
 }
 .navigation ul {
   display: flex;

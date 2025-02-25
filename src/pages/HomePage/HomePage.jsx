@@ -25,6 +25,9 @@ function HomePage() {
     ? products.filter((product) => product.category === selectedCategory)
     : products;
 
+  // Limita os produtos a 8 itens
+  const limitedProducts = filteredProducts.slice(0, 8);
+
   // Captura todas as categorias disponíveis nos produtos
   const categories = [...new Set(products.map((p) => p.category))];
 
@@ -85,11 +88,11 @@ function HomePage() {
             </div>
           ))}
 
-          {/* Lista de Produtos Filtrados */}
+          {/* Lista de Produtos Filtrados e Limitados */}
           <Section title={"Produtos em Alta"} titleAlign="left">
             <div className="product-container">
               <ProductListing
-                products={filteredProducts}
+                products={limitedProducts} // Passa apenas os 8 primeiros produtos
                 useButtonLink={false}
                 type={selectedCategory}
               />
@@ -97,6 +100,23 @@ function HomePage() {
           </Section>
         </div>
       </Section>
+
+      <div className="containers">
+        <div className="img-oferta">
+          <img src="../../public/home-slide-4.jpeg" alt="Imagem em oferta" />
+        </div>
+        <div className="oferta-especial">
+          <p className="p">Oferta especial</p>
+          <h1>Air Jordan edição de colecionador</h1>
+          <p className="p-desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip
+          </p>
+          <button>Ver Oferta</button>
+        </div>
+      </div>
     </div>
   );
 }
