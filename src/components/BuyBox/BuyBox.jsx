@@ -14,7 +14,7 @@ function BuyBox({
 }) {
   return (
     <div className="buy-box">
-      <h1 className="product-name">{name}</h1>
+      <h1 className="product-names">{name}</h1>
       <p className="product-reference">Referência: {reference}</p>
 
       {/* Exibição das estrelas e avaliação */}
@@ -29,8 +29,8 @@ function BuyBox({
         <p className="price">
           {priceDiscount ? (
             <>
-              <span className="original-price">R${price}</span>
-              <span className="discount-price">R${priceDiscount}</span>
+              <span className="original-prices">R${price}</span>
+              <span className="discount-prices">R${priceDiscount}</span>
             </>
           ) : (
             `R$${price}`

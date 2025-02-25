@@ -1,8 +1,14 @@
 .home-page {
   background: #f9f8fe;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
-/* Container do card com posicionamento relativo para o overlay funcionar */
+/*collections-list*/
 .home-page .collections-list .product-card {
+  margin: 0;
+  padding: 0;
   position: relative;
   width: 405px;
   height: 251px;
@@ -11,40 +17,41 @@
   overflow: hidden;
 }
 
-/* A imagem ocupa todo o card */
 .home-page .collections-list .product-card .product-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: rotateZ(0deg);
 }
-
-/* Container de informações do produto, configurado para sobrepor a imagem */
+.home-page .collections-list .product-image-bcg {
+  width: 100%;
+  height: 100%;
+}
 .home-page .collections-list .product-card .product-info {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* Centraliza o conteúdo (o botão) */
+  padding: 15px;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  /* Impede que outros elementos (nome, preço) interfiram */
+  align-items: flex-start;
+  justify-content: flex-end;
   pointer-events: none;
 }
 
-/* Oculta todos os elementos dentro de product-info, exceto o botão/link */
 .home-page .collections-list .product-card .product-info > *:not(.button-link) {
   display: none;
 }
 
-/* Estilização do botão/link */
 .home-page .collections-list .product-card .button-link {
   margin: 10px;
   width: 153px;
   height: 48px;
-  pointer-events: all; /* Permite interação com o botão */
-  padding: 10px 20px;
+  pointer-events: all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #f5f5f5;
   color: #c92071;
   border-radius: 8px;
@@ -58,19 +65,21 @@
   background-color: #0056b3;
   color: #f5f5f5;
 }
+.home-page .collections-list .product-card:hover {
+  transform: scale(1.05);
+}
+
 .promotions {
-  /* border: 1px solid red; */
   align-items: center;
   justify-content: center;
+  gap: 30px;
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
 }
 .promotions span {
   margin-top: 10px;
 }
 .category-icon {
-  /* border: 1px solid red; */
   width: 104px;
   height: 138px;
   display: flex;
@@ -95,10 +104,21 @@
   border-radius: 100%;
   opacity: 0.5;
   cursor: pointer;
-  transition: 1s ease;
+  transition: 1s;
 }
 .img-category:hover {
-  transition: 1s ease;
-  transform: scale(1.1);
+  transform: scale(1.05);
   opacity: 1;
+}
+.product-container {
+  display: flex;
+  width: 1440px;
+  border: 1px solid red;
+}
+.collection {
+  width: 1440px;
+  /* border: 1px solid red; */
+}
+.collection div {
+  gap: 111px;
 }

@@ -49,6 +49,7 @@ function Header() {
                 Produtos
               </NavLink>
             </li>
+
             <li>
               <NavLink
                 to="/categories"
@@ -57,6 +58,7 @@ function Header() {
                 Categorias
               </NavLink>
             </li>
+
             <li>
               <NavLink
                 to="/orders"

@@ -1,22 +1,52 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout/Layout";
-import HomePage from "./pages/HomePage";
-import ProductListingPage from "./pages/ProductListingPage";
-import ProductViewPage from "./pages/ProductViewPage";
+// const mysql2 = require("mysql2/promise");
 
-const App = () => {
-  return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/products" element={<ProductListingPage />} />
-          <Route path="/product/:id" element={<ProductViewPage />} />
-        </Routes>
-      </Layout>
-    </Router>
-  );
+// const executar = async (sql) => {
+//   let conexao;
+//   try {
+//     conexao = await mysql2.createConnection({
+//       host: "localhost",
+//       user: "root",
+//       password: "1234",
+//       database: "mercado",
+//       port: 3306,
+//     });
+
+//     const [result] = await conexao.query(sql);
+//     return result;
+//   } catch (error) {
+//     console.error("Erro ao executar consulta:", error);
+//     throw error;
+//   }
+// };
+
+// module.exports = { executar };
+const mysql2 = require("mysql2/promise");
+
+const executar = async (sql) => {
+  let conexao;
+  try {
+    // Cria a conexão com o banco de dados
+    conexao = await mysql2.createConnection({
+      host: "localhost",
+      user: "root",
+      password: "1234",
+      database: "mercado",
+      port: 3306,
+    });
+
+    // Executa a consulta SQL
+    const [result] = await conexao.query(sql);
+
+    return result; // Retorna o resultado da consulta
+  } catch (error) {
+    console.error("Erro ao executar consulta:", error);
+    throw error; // Lança o erro caso haja algum problema
+  } finally {
+    if (conexao) {
+      // Fecha a conexão com o banco de dados
+      await conexao.end();
+    }
+  }
 };
 
-export default App;
+module.exports = { executar };

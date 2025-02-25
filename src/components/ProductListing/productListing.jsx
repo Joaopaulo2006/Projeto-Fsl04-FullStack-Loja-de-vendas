@@ -1,6 +1,6 @@
 import React from "react";
-import ProductCard from "../ProductCard/productcard.jsx";
-import "./productListing.css";
+import ProductCard from "../ProductCard/ProductCard";
+import "./ProductListing.css";
 
 function ProductListing({
   products,
@@ -16,13 +16,13 @@ function ProductListing({
         <div className="product-list">
           {products.map((product, index) => (
             <ProductCard
-              key={index} // Evita erro caso id seja undefined
-              id={`product-${index + 1}`} // Garante que sempre tenha um id
-              type={type || "Produto nao listado"}
+              key={index}
+              id={product.id}
+              type={product.category || "Produto não listado"}
               name={product.name || "Produto Sem Nome"}
               image={product.image}
-              price={product.price || 0}
-              priceDiscount={product.priceDiscount || null}
+              priceDiscount={product.priceDiscount}
+              price={product.price}
               useButtonLink={useButtonLink}
             />
           ))}

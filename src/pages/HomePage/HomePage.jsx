@@ -1,100 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Gallery from "../../components/Gallery/Gallery";
 import Section from "../../components/Section/section";
 import ProductListing from "../../components/ProductListing/ProductListing";
+import "bootstrap/dist/css/bootstrap.css";
 import "./HomePage.css";
 
 function HomePage() {
-  const [selectedCategory, setSelectedCategory] = useState("Camiseta");
-  const featuredProducts = [
-    {
-      image: "/collection-1.png",
-    },
-    {
-      image: "/collection-2.png",
-    },
-    {
-      image: "/collection-3.png",
-    },
-  ];
-  const Collection = {
-    Camiseta: [
-      { name: "SUPREME-Camiseta Diamonds", image: "/camiseta.png" },
-      { name: "SUPREME-Camiseta Diamonds", image: "/camiseta.png" },
-      { name: "SUPREME-Camiseta Diamonds", image: "/camiseta.png" },
-      { name: "SUPREME-Camiseta Diamonds", image: "/camiseta.png" },
-      { name: "SUPREME-Camiseta Diamonds", image: "/camiseta.png" },
-      { name: "SUPREME-Camiseta Diamonds", image: "/camiseta.png" },
-      { name: "SUPREME-Camiseta Diamonds", image: "/camiseta.png" },
-      { name: "SUPREME-Camiseta Diamonds", image: "/camiseta.png" },
-    ],
-    Calca: [
-      { name: "Bermuda Jeans Levi's®", image: "/calca.png" },
-      { name: "Bermuda Jeans Levi's®", image: "/calca.png" },
-      { name: "Bermuda Jeans Levi's®", image: "/calca.png" },
-      { name: "Bermuda Jeans Levi's®", image: "/calca.png" },
-      { name: "Bermuda Jeans Levi's®", image: "/calca.png" },
-      { name: "Bermuda Jeans Levi's®", image: "/calca.png" },
-      { name: "Bermuda Jeans Levi's®", image: "/calca.png" },
-      { name: "Bermuda Jeans Levi's®", image: "/calca.png" },
-    ],
-    Bone: [
-      { name: "SUPREME-Boné Washed Chino", image: "/bone.png" },
-      { name: "SUPREME-Boné Washed Chino", image: "/bone.png" },
-      { name: "SUPREME-Boné Washed Chino", image: "/bone.png" },
-      { name: "SUPREME-Boné Washed Chino", image: "/bone.png" },
-      { name: "SUPREME-Boné Washed Chino", image: "/bone.png" },
-      { name: "SUPREME-Boné Washed Chino", image: "/bone.png" },
-      { name: "SUPREME-Boné Washed Chino", image: "/bone.png" },
-      { name: "SUPREME-Boné Washed Chino", image: "/bone.png" },
-    ],
-    Headphone: [
-      {
-        name: "JBL, Tune 520BT - Preto",
-        image: "/headphone.png",
-      },
-      {
-        name: "JBL, Tune 520BT - Preto",
-        image: "/headphone.png",
-      },
-      {
-        name: "JBL, Tune 520BT - Preto",
-        image: "/headphone.png",
-      },
-      {
-        name: "JBL, Tune 520BT - Preto",
-        image: "/headphone.png",
-      },
-      {
-        name: "JBL, Tune 520BT - Preto",
-        image: "/headphone.png",
-      },
-      {
-        name: "JBL, Tune 520BT - Preto",
-        image: "/headphone.png",
-      },
-      {
-        name: "JBL, Tune 520BT - Preto",
-        image: "/headphone.png",
-      },
-      {
-        name: "JBL, Tune 520BT - Preto",
-        image: "/headphone.png",
-      },
-    ],
-    Tenis: [
-      { name: "K-Swiss V8 - Masculino", image: "/tenis.png" },
-      { name: "K-Swiss V8 - Masculino", image: "/tenis.png" },
-      { name: "K-Swiss V8 - Masculino", image: "/tenis.png" },
-      { name: "K-Swiss V8 - Masculino", image: "/tenis.png" },
-      { name: "K-Swiss V8 - Masculino", image: "/tenis.png" },
-      { name: "K-Swiss V8 - Masculino", image: "/tenis.png" },
-      { name: "K-Swiss V8 - Masculino", image: "/tenis.png" },
-      { name: "K-Swiss V8 - Masculino", image: "/tenis.png" },
-    ],
-  };
-  const categories = Object.keys(Collection);
-  const images = [
+  const [products, setProducts] = useState([]); // Armazena os produtos da API
+  const [selectedCategory, setSelectedCategory] = useState(""); // Categoria selecionada
+
+  // Busca os produtos da API quando a página carrega
+  useEffect(() => {
+    fetch("http://localhost:9090/products") // API que retorna os produtos
+      .then((response) => response.json())
+      .then((data) => {
+        setProducts(data); // Atualiza o estado com os produtos recebidos
+        if (data.length > 0) setSelectedCategory(data[0].category); // Define uma categoria inicial
+      })
+      .catch((error) => console.error("Erro ao buscar produtos:", error));
+  }, []);
+
+  // Filtra os produtos pela categoria selecionada
+  const filteredProducts = selectedCategory
+    ? products.filter((product) => product.category === selectedCategory)
+    : products;
+
+  // Captura todas as categorias disponíveis nos produtos
+  const categories = [...new Set(products.map((p) => p.category))];
+
+  const imagens = [
     { src: "/home-slide-1.jpeg" },
     { src: "/home-slide-2.jpeg" },
     { src: "/home-slide-3.jpeg" },
@@ -105,28 +39,28 @@ function HomePage() {
     { src: "/home-slide-8.jpeg" },
   ];
 
+  // Função para gerar o estilo da categoria com base na seleção
+  const getCategoryImageStyle = (category) => {
+    const isActive = selectedCategory === category;
+    return {
+      backgroundImage: `url(/${category.toLowerCase()}${
+        isActive ? "-rosa" : ""
+      }.png)`,
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "64px",
+      backgroundPosition: "center",
+    };
+  };
+
   return (
     <div className="home-page">
       <Gallery
-        images={images}
+        images={imagens}
         width="1440px"
         height="681px"
-        justify-content="center"
-        align-items="center"
         autoSlide={true}
         interval={4000}
       />
-      <Section
-        title="Coleções em Destaque"
-        titleAlign="left"
-        className="collections"
-      >
-        <ProductListing
-          products={featuredProducts}
-          useButtonLink={true}
-          variant="collections-list"
-        />
-      </Section>
 
       <Section title="Promoções Especiais" titleAlign="center">
         <div className="promotions">
@@ -142,29 +76,24 @@ function HomePage() {
               <div className="bcg">
                 <div
                   className="img-category"
-                  style={{
-                    backgroundImage: `url(/${category.toLowerCase()}.png)`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "64px",
-                    backgroundPosition: "center",
-                  }}
+                  style={getCategoryImageStyle(category)}
                 ></div>
               </div>
-              <span>{category}</span>
+              <span>
+                <p>{category}</p>
+              </span>
             </div>
           ))}
 
-          {/* Lista de Produtos */}
-          <Section
-            className="product-container"
-            title={"Produtos em Alta"}
-            titleAlign="left"
-          >
-            <ProductListing
-              products={Collection[selectedCategory]}
-              useButtonLink={true}
-              type={selectedCategory}
-            />
+          {/* Lista de Produtos Filtrados */}
+          <Section title={"Produtos em Alta"} titleAlign="left">
+            <div className="product-container">
+              <ProductListing
+                products={filteredProducts}
+                useButtonLink={false}
+                type={selectedCategory}
+              />
+            </div>
           </Section>
         </div>
       </Section>

@@ -5,7 +5,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.product-name {
+.product-names {
   font-size: 32px;
   color: #333;
 }
@@ -31,17 +31,17 @@
   margin-top: 10px;
 }
 
-.price {
+.prices {
   font-size: 32px;
   color: #333;
 }
 
-.original-price {
+.original-prices {
   text-decoration: line-through;
   color: #999;
 }
 
-.discount-price {
+.discount-prices {
   font-size: 32px;
   color: #e74c3c;
 }

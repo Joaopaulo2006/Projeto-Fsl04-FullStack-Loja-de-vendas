@@ -4,20 +4,19 @@ import "./FilterGroup.css";
 function FilterGroup({ title, inputType, options, onChange }) {
   return (
     <div className="filter-group">
-      <div className="filter-title">{title}</div>
-      <div className="filter-options">
-        {options.map((option, index) => (
-          <div key={index} className="filter-option">
-            <input
-              type={inputType} // 'checkbox' ou 'radio'
-              value={option.value || option.text} // Usando 'value' se disponível
-              id={option.value || option.text} // Atribuindo o id único
-              onChange={onChange}
-            />
-            <label htmlFor={option.value || option.text}>{option.text}</label>
-          </div>
-        ))}
-      </div>
+      <h3>{title}</h3>
+      {options.map((option) => (
+        <div key={option.value} className="filter-option">
+          <input
+            type={inputType}
+            id={option.value}
+            name={title}
+            value={option.value}
+            onChange={onChange}
+          />
+          <label htmlFor={option.value}>{option.text}</label>
+        </div>
+      ))}
     </div>
   );
 }
