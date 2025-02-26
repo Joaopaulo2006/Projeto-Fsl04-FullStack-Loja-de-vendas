@@ -9,13 +9,12 @@ function ProductCard({
   price,
   priceDiscount,
   useButtonLink,
-  type,
+  type, // Recebe o estilo customizado
 }) {
-  const priceDiscountNumber = Number(priceDiscount); // Converte para número
-  const prices = Number(price); // Converte para número
+  const priceDiscountNumber = Number(priceDiscount);
+  const prices = Number(price);
 
   return useButtonLink ? (
-    // Quando useButtonLink for true, o ProductCard será uma div
     <div className="product-card">
       <div className="product-image-bcg">
         <img src={image} alt={name} className="product-image" />
@@ -39,14 +38,12 @@ function ProductCard({
           )}
         </p>
         <div className="button-link">
-          {/* Link de compra dentro de uma div */}
-          <Link to={`/product/${id}`}>Comprar</Link>
+          <Link to={`/products/${id}`}>Comprar</Link>
         </div>
       </div>
     </div>
   ) : (
-    // Quando useButtonLink for false, o ProductCard será um Link diretamente
-    <Link className="product-card-2" to={`/product/${id}`}>
+    <Link className="product-card-2" to={`/products/${id}`}>
       <div className="product-image-bcg-2">
         <img src={image} alt={name} className="product-image-2" />
       </div>

@@ -52,7 +52,7 @@ function Header() {
 
             <li>
               <NavLink
-                to="/categories"
+                to="/categoria"
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 Categorias

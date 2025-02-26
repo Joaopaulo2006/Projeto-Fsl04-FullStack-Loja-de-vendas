@@ -27,10 +27,12 @@ function Gallery({ images, autoSlide = true, interval = 3000 }) {
       >
         <div className="slide-content">
           <span className="highlight">Melhores ofertas personalizadas</span>
-          <h1>Queima de estoque Nike 🔥</h1>
+          <h1>
+            Queima de <br /> estoque Nike 🔥
+          </h1>
           <p>
-            Consequat culpa exercitation mollit nisi excepteur do do tempor
-            laboris eiusmod irure consectetur.
+            Consequat culpa exercitation mollit nisi excepteur do
+            <br /> do tempor laboris eiusmod irure consectetur.
           </p>
           <button className="cta-button">Ver Ofertas</button>
         </div>

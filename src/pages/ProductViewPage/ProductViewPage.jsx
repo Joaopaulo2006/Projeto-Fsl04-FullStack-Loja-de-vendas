@@ -1,67 +1,86 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./ProductViewPage.css";
 
 function ProductViewPage() {
-  const { id } = useParams(); // Pega o ID do produto da URL
-  const [product, setProduct] = useState(null); // Estado para armazenar o produto
-  const navigate = useNavigate(); // Função para navegar para outras páginas
+  const { id } = useParams(); // Pegando o ID do produto da URL
+  const [product, setProduct] = useState(null); // Estado do produto
+  const navigate = useNavigate(); // Para redirecionamento
 
   useEffect(() => {
-    // Aqui você pode buscar o produto de um JSON ou de uma API
     const fetchProductData = async () => {
       try {
-        // Simulando a busca de um produto com o ID
-        const response = await fetch(`/produtos.json`);
-        const products = await response.json();
-        const selectedProduct = products.find(
-          (prod) => prod.id === parseInt(id)
-        );
-
-        if (selectedProduct) {
-          setProduct(selectedProduct);
+        const response = await axios.get(`http://localhost:9090/products`);
+        if (response.data) {
+          setProduct(response.data);
         } else {
-          // Redireciona para a página de erro se não encontrar o produto
-          navigate("/404");
+          navigate("/404"); // Redireciona se o produto não for encontrado
         }
       } catch (error) {
         console.error("Erro ao carregar o produto:", error);
+        navigate("/404");
       }
     };
 
     fetchProductData();
-  }, [id, navigate]); // Recarrega quando o ID muda
+  }, [id, navigate]);
 
   if (!product) {
     return <div>Carregando...</div>;
   }
 
+  // Desestruturação segura do objeto `product`
+  const { name, image, rating, price, priceDiscount, description, stock } =
+    product;
+  const formattedPrice = price ? price.toFixed(2) : "0.00";
+  const formattedPriceDiscount = priceDiscount
+    ? priceDiscount.toFixed(2)
+    : formattedPrice;
+
   return (
     <div className="product-view-page">
       <div className="product-details">
         <div className="product-image">
-          <img src={product.image} alt={product.name} />
+          {image ? (
+            <img src={image} alt={name} />
+          ) : (
+            <div className="image-placeholder">Imagem indisponível</div>
+          )}
         </div>
         <div className="product-info">
-          <h1>{product.name}</h1>
+          <h1>{name}</h1>
+          <p className="rating">
+            <img src="../../assets/star-icon" alt="estrela de coiso" />{" "}
+            {rating || "Sem avaliação"}
+          </p>
           <p className="price">
-            {product.priceDiscount ? (
+            {priceDiscount ? (
               <>
-                <span className="price-old">R${product.price}</span>
+                <span className="price-old">R${formattedPrice}</span>
                 <span className="price-discount">
-                  R${product.priceDiscount}
+                  R${formattedPriceDiscount}
                 </span>
               </>
             ) : (
-              <span className="price-current">R${product.price}</span>
+              <span className="price-current">R${formattedPrice}</span>
             )}
           </p>
-          <p className="description">{product.description}</p>
-          <p className="stock">Estoque: {product.stock}</p>
-          <div className="product-actions">
-            <button className="add-to-cart">Adicionar ao Carrinho</button>
-            <button className="buy-now">Comprar Agora</button>
+          <p className="description">
+            {description || "Descrição não disponível"}
+          </p>
+          <p className="stock">Estoque: {stock || "Indisponível"}</p>
+
+          <div className="size-options">
+            <span>Tamanho:</span>
+            {[39, 40, 41, 42, 43].map((size) => (
+              <button key={size} className="size-button">
+                {size}
+              </button>
+            ))}
           </div>
+
+          <button className="buy-button">Comprar</button>
         </div>
       </div>
     </div>

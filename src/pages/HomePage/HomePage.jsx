@@ -6,30 +6,41 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./HomePage.css";
 
 function HomePage() {
-  const [products, setProducts] = useState([]); // Armazena os produtos da API
-  const [selectedCategory, setSelectedCategory] = useState(""); // Categoria selecionada
+  const [allProducts, setAllProducts] = useState([]); // Todos os produtos da API
+  const [selectedCategory, setSelectedCategory] = useState(""); // Categoria selecionada para "Produtos em Alta"
 
   // Busca os produtos da API quando a página carrega
   useEffect(() => {
-    fetch("http://localhost:9090/products") // API que retorna os produtos
+    fetch("http://localhost:9090/products")
       .then((response) => response.json())
       .then((data) => {
-        setProducts(data); // Atualiza o estado com os produtos recebidos
-        if (data.length > 0) setSelectedCategory(data[0].category); // Define uma categoria inicial
+        setAllProducts(data); // Armazena todos os produtos, incluindo os "-Collection"
+        // Define a categoria inicial para "Produtos em Alta" a partir dos produtos normais (não de coleção)
+        const normalProducts = data.filter(
+          (product) => !product.category.endsWith("-Collection")
+        );
+        if (normalProducts.length > 0)
+          setSelectedCategory(normalProducts[0].category);
       })
       .catch((error) => console.error("Erro ao buscar produtos:", error));
   }, []);
 
-  // Filtra os produtos pela categoria selecionada
-  const filteredProducts = selectedCategory
-    ? products.filter((product) => product.category === selectedCategory)
-    : products;
+  // Produtos para "Produtos em Alta": somente os que NÃO têm "-Collection"
+  const normalProducts = allProducts.filter(
+    (product) => !product.category.endsWith("-Collection")
+  );
+  const filteredProductsForListings = selectedCategory
+    ? normalProducts.filter((product) => product.category === selectedCategory)
+    : normalProducts;
+  const limitedProducts = filteredProductsForListings.slice(0, 8);
 
-  // Limita os produtos a 8 itens
-  const limitedProducts = filteredProducts.slice(0, 8);
+  // Produtos para "Coleções em Destaque": somente os que têm "-Collection"
+  const collectionProducts = allProducts.filter((product) =>
+    product.category.endsWith("-Collection")
+  );
 
-  // Captura todas as categorias disponíveis nos produtos
-  const categories = [...new Set(products.map((p) => p.category))];
+  // Todas as categorias disponíveis dos produtos normais (para o filtro)
+  const categories = [...new Set(normalProducts.map((p) => p.category))];
 
   const imagens = [
     { src: "/home-slide-1.jpeg" },
@@ -42,7 +53,7 @@ function HomePage() {
     { src: "/home-slide-8.jpeg" },
   ];
 
-  // Função para gerar o estilo da categoria com base na seleção
+  // Função para gerar o estilo de fundo para os ícones de categoria
   const getCategoryImageStyle = (category) => {
     const isActive = selectedCategory === category;
     return {
@@ -65,9 +76,19 @@ function HomePage() {
         interval={4000}
       />
 
-      <Section title="Promoções Especiais" titleAlign="center">
+      {/* Coleções em Destaque - exibe os produtos de coleção */}
+      <Section title="Coleções em Destaque" titleAlign="center">
+        <div className="collections">
+          <ProductListing
+            products={collectionProducts}
+            variant="collections-list"
+            useButtonLink={true}
+          />
+        </div>
+      </Section>
+
+      <Section title="Promoções" titleAlign="center">
         <div className="promotions">
-          {/* Ícones das Categorias */}
           {categories.map((category) => (
             <div
               key={category}
@@ -88,11 +109,10 @@ function HomePage() {
             </div>
           ))}
 
-          {/* Lista de Produtos Filtrados e Limitados */}
           <Section title={"Produtos em Alta"} titleAlign="left">
             <div className="product-container">
               <ProductListing
-                products={limitedProducts} // Passa apenas os 8 primeiros produtos
+                products={limitedProducts}
                 useButtonLink={false}
                 type={selectedCategory}
               />
